@@ -3,6 +3,21 @@ const STORAGE_KEYS = {
   settings: 'tetris_settings',
 } as const;
 
+let lastStorageError: string | null = null;
+let storageAvailable = true;
+
+export function getLastStorageError(): string | null {
+  return lastStorageError;
+}
+
+export function clearLastStorageError(): void {
+  lastStorageError = null;
+}
+
+export function isStorageOk(): boolean {
+  return storageAvailable && lastStorageError === null;
+}
+
 export interface StoredSettings {
   difficulty: 'normal' | 'hard' | 'grandmaster';
   music: boolean;
@@ -28,8 +43,9 @@ export function loadHighScore(): number {
       const val = parseInt(raw, 10);
       return isNaN(val) ? 0 : val;
     }
-  } catch {
-    // ignore
+  } catch (e) {
+    lastStorageError = e instanceof Error ? e.message : String(e);
+    storageAvailable = false;
   }
   return 0;
 }
@@ -37,8 +53,10 @@ export function loadHighScore(): number {
 export function saveHighScore(score: number): void {
   try {
     localStorage.setItem(STORAGE_KEYS.highScore, String(score));
-  } catch {
-    // ignore
+    storageAvailable = true;
+  } catch (e) {
+    lastStorageError = e instanceof Error ? e.message : String(e);
+    storageAvailable = false;
   }
 }
 
@@ -56,8 +74,9 @@ export function loadSettings(): StoredSettings {
         holdQueue: typeof parsed.holdQueue === 'boolean' ? parsed.holdQueue : DEFAULT_SETTINGS.holdQueue,
       };
     }
-  } catch {
-    // ignore
+  } catch (e) {
+    lastStorageError = e instanceof Error ? e.message : String(e);
+    storageAvailable = false;
   }
   return { ...DEFAULT_SETTINGS };
 }
@@ -65,7 +84,9 @@ export function loadSettings(): StoredSettings {
 export function saveSettings(settings: StoredSettings): void {
   try {
     localStorage.setItem(STORAGE_KEYS.settings, JSON.stringify(settings));
-  } catch {
-    // ignore
+    storageAvailable = true;
+  } catch (e) {
+    lastStorageError = e instanceof Error ? e.message : String(e);
+    storageAvailable = false;
   }
 }
