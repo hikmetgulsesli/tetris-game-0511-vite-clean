@@ -1,0 +1,47 @@
+[
+  {
+    "screenId": "85de96c09c4749799f636f3f7e9ff439",
+    "title": "Main Menu",
+    "componentName": "MainMenu",
+    "file": "src/screens/MainMenu.tsx",
+    "buttons": 4,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "b118fa3834d44f72bc962438de545d7a",
+    "title": "Playfield",
+    "componentName": "Playfield",
+    "file": "src/screens/Playfield.tsx",
+    "buttons": 9,
+    "inputs": 0,
+    "links": 7
+  },
+  {
+    "screenId": "7525d02e41dc4ad994755a5b53e33fb4",
+    "title": "Results",
+    "componentName": "Results",
+    "file": "src/screens/Results.tsx",
+    "buttons": 3,
+    "inputs": 0,
+    "links": 0
+  },
+  {
+    "screenId": "0ea6b6519a0a4fea8c151f737faba15c",
+    "title": "Help",
+    "componentName": "Help",
+    "file": "src/screens/Help.tsx",
+    "buttons": 4,
+    "inputs": 0,
+    "links": 11
+  },
+  {
+    "screenId": "ac4eeee68f0142a7ae01c798ea365e14",
+    "title": "Settings",
+    "componentName": "Settings",
+    "file": "src/screens/Settings.tsx",
+    "buttons": 7,
+    "inputs": 8,
+    "links": 8
+  }
+]
