@@ -1,0 +1,772 @@
+[
+  {
+    "screenId": "85de96c09c4749799f636f3f7e9ff439",
+    "screenTitle": "Main Menu",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "Resume Game",
+        "line": 142
+      },
+      {
+        "type": "button",
+        "label": "Start New",
+        "line": 147
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 164
+      },
+      {
+        "type": "button",
+        "label": "Help",
+        "line": 169
+      },
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 153
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "Resume Game",
+        "line": 142
+      },
+      {
+        "type": "button",
+        "label": "Start New",
+        "line": 147
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 164
+      },
+      {
+        "type": "button",
+        "label": "Help",
+        "line": 169
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "select",
+        "inputType": "select",
+        "line": 153
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 5,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "b118fa3834d44f72bc962438de545d7a",
+    "screenTitle": "Playfield",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Stats",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 151
+      },
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 325
+      },
+      {
+        "type": "link",
+        "label": "Leader",
+        "href": "#",
+        "line": 329
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 333
+      },
+      {
+        "type": "link",
+        "label": "menu",
+        "href": "#",
+        "line": 337
+      },
+      {
+        "type": "button",
+        "label": "Settings",
+        "line": 154
+      },
+      {
+        "type": "button",
+        "label": "Account",
+        "line": 157
+      },
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 184
+      },
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 201
+      },
+      {
+        "type": "button",
+        "label": "arrow_left",
+        "line": 300
+      },
+      {
+        "type": "button",
+        "label": "arrow_right",
+        "line": 303
+      },
+      {
+        "type": "button",
+        "label": "arrow_drop_down",
+        "line": 306
+      },
+      {
+        "type": "button",
+        "label": "rotate_right",
+        "line": 312
+      },
+      {
+        "type": "button",
+        "label": "keyboard_double_arrow_down",
+        "line": 315
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 149
+      },
+      {
+        "type": "link",
+        "label": "Stats",
+        "href": "#",
+        "line": 150
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 151
+      },
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 325
+      },
+      {
+        "type": "link",
+        "label": "Leader",
+        "href": "#",
+        "line": 329
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 333
+      },
+      {
+        "type": "link",
+        "label": "menu",
+        "href": "#",
+        "line": 337
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "Settings",
+        "line": 154
+      },
+      {
+        "type": "button",
+        "label": "Account",
+        "line": 157
+      },
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 184
+      },
+      {
+        "type": "button",
+        "label": "pause",
+        "line": 201
+      },
+      {
+        "type": "button",
+        "label": "arrow_left",
+        "line": 300
+      },
+      {
+        "type": "button",
+        "label": "arrow_right",
+        "line": 303
+      },
+      {
+        "type": "button",
+        "label": "arrow_drop_down",
+        "line": 306
+      },
+      {
+        "type": "button",
+        "label": "rotate_right",
+        "line": 312
+      },
+      {
+        "type": "button",
+        "label": "keyboard_double_arrow_down",
+        "line": 315
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 16,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "7525d02e41dc4ad994755a5b53e33fb4",
+    "screenTitle": "Results",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "button",
+        "label": "replay",
+        "line": 206
+      },
+      {
+        "type": "button",
+        "label": "Result",
+        "line": 212
+      },
+      {
+        "type": "button",
+        "label": "Main",
+        "line": 216
+      }
+    ],
+    "navigation": [],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "replay",
+        "line": 206
+      },
+      {
+        "type": "button",
+        "label": "Result",
+        "line": 212
+      },
+      {
+        "type": "button",
+        "label": "Main",
+        "line": 216
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 3,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "0ea6b6519a0a4fea8c151f737faba15c",
+    "screenTitle": "Help",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 118
+      },
+      {
+        "type": "link",
+        "label": "Stats",
+        "href": "#",
+        "line": 119
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 120
+      },
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Leaderboards",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Achievements",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 265
+      },
+      {
+        "type": "link",
+        "label": "Leader",
+        "href": "#",
+        "line": 269
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 273
+      },
+      {
+        "type": "link",
+        "label": "menu",
+        "href": "#",
+        "line": 277
+      },
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 123
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 126
+      },
+      {
+        "type": "button",
+        "label": "NEW GAME",
+        "line": 158
+      },
+      {
+        "type": "button",
+        "label": "arrow_back",
+        "line": 166
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 118
+      },
+      {
+        "type": "link",
+        "label": "Stats",
+        "href": "#",
+        "line": 119
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 120
+      },
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 140
+      },
+      {
+        "type": "link",
+        "label": "Leaderboards",
+        "href": "#",
+        "line": 144
+      },
+      {
+        "type": "link",
+        "label": "Achievements",
+        "href": "#",
+        "line": 148
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 152
+      },
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 265
+      },
+      {
+        "type": "link",
+        "label": "Leader",
+        "href": "#",
+        "line": 269
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 273
+      },
+      {
+        "type": "link",
+        "label": "menu",
+        "href": "#",
+        "line": 277
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "settings",
+        "line": 123
+      },
+      {
+        "type": "button",
+        "label": "account_circle",
+        "line": 126
+      },
+      {
+        "type": "button",
+        "label": "NEW GAME",
+        "line": 158
+      },
+      {
+        "type": "button",
+        "label": "arrow_back",
+        "line": 166
+      }
+    ],
+    "inputs": [],
+    "hardcodedData": [],
+    "totalInteractive": 15,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  },
+  {
+    "screenId": "ac4eeee68f0142a7ae01c798ea365e14",
+    "screenTitle": "Settings",
+    "deviceType": "DESKTOP",
+    "elements": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 130
+      },
+      {
+        "type": "link",
+        "label": "Leaderboards",
+        "href": "#",
+        "line": 134
+      },
+      {
+        "type": "link",
+        "label": "Achievements",
+        "href": "#",
+        "line": 138
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 142
+      },
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 272
+      },
+      {
+        "type": "link",
+        "label": "Leader",
+        "href": "#",
+        "line": 276
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 280
+      },
+      {
+        "type": "link",
+        "label": "menu",
+        "href": "#",
+        "line": 284
+      },
+      {
+        "type": "button",
+        "label": "NEW GAME",
+        "line": 148
+      },
+      {
+        "type": "button",
+        "label": "Left Arrow",
+        "line": 222
+      },
+      {
+        "type": "button",
+        "label": "Right Arrow",
+        "line": 226
+      },
+      {
+        "type": "button",
+        "label": "Up Arrow",
+        "line": 230
+      },
+      {
+        "type": "button",
+        "label": "Space",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "Reset Defaults",
+        "line": 265
+      },
+      {
+        "type": "button",
+        "label": "Save Changes",
+        "line": 266
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 168
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 172
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 180
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 196
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 200
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 204
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 246
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 256
+      }
+    ],
+    "navigation": [
+      {
+        "type": "link",
+        "label": "dashboard",
+        "href": "#",
+        "line": 130
+      },
+      {
+        "type": "link",
+        "label": "Leaderboards",
+        "href": "#",
+        "line": 134
+      },
+      {
+        "type": "link",
+        "label": "Achievements",
+        "href": "#",
+        "line": 138
+      },
+      {
+        "type": "link",
+        "label": "settings",
+        "href": "#",
+        "line": 142
+      },
+      {
+        "type": "link",
+        "label": "Play",
+        "href": "#",
+        "line": 272
+      },
+      {
+        "type": "link",
+        "label": "Leader",
+        "href": "#",
+        "line": 276
+      },
+      {
+        "type": "link",
+        "label": "Help",
+        "href": "#",
+        "line": 280
+      },
+      {
+        "type": "link",
+        "label": "menu",
+        "href": "#",
+        "line": 284
+      }
+    ],
+    "buttons": [
+      {
+        "type": "button",
+        "label": "NEW GAME",
+        "line": 148
+      },
+      {
+        "type": "button",
+        "label": "Left Arrow",
+        "line": 222
+      },
+      {
+        "type": "button",
+        "label": "Right Arrow",
+        "line": 226
+      },
+      {
+        "type": "button",
+        "label": "Up Arrow",
+        "line": 230
+      },
+      {
+        "type": "button",
+        "label": "Space",
+        "line": 234
+      },
+      {
+        "type": "button",
+        "label": "Reset Defaults",
+        "line": 265
+      },
+      {
+        "type": "button",
+        "label": "Save Changes",
+        "line": 266
+      }
+    ],
+    "inputs": [
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 168
+      },
+      {
+        "type": "input",
+        "label": "range",
+        "inputType": "range",
+        "line": 172
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 180
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 196
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 200
+      },
+      {
+        "type": "input",
+        "label": "radio",
+        "inputType": "radio",
+        "line": 204
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 246
+      },
+      {
+        "type": "input",
+        "label": "checkbox",
+        "inputType": "checkbox",
+        "line": 256
+      }
+    ],
+    "hardcodedData": [],
+    "totalInteractive": 23,
+    "requiresRouter": false,
+    "requiresDragDrop": false
+  }
+]
