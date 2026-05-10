@@ -1,4 +1,4 @@
-import { useRef, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback, useState } from 'react';
 import { AppProvider, useAppContext } from './contexts/AppContext';
 import { MainMenu } from './screens/MainMenu';
 import { Playfield } from './screens/Playfield';
@@ -6,7 +6,7 @@ import { Help } from './screens/Help';
 import { Settings } from './screens/Settings';
 import { Results } from './screens/Results';
 import { getPieceBlocks, getGhostY, TETROMINO_CSS_COLORS, BOARD_WIDTH, BOARD_HEIGHT } from './types/domain';
-import './App.css';
+import { getLastStorageError, clearLastStorageError } from './utils/storage';
 
 function GameBoard() {
   const { gameState, movePiece, rotatePiece, softDrop, hardDrop, holdCurrentPiece } = useAppContext();
@@ -631,13 +631,17 @@ function HelpScreen() {
 }
 
 function SettingsScreen() {
-  const { goToMenu } = useAppContext();
+  const { goToMenu, openProfile, closeProfile, profileOpen } = useAppContext();
   return (
     <div className="min-h-screen bg-background text-on-surface flex flex-col relative">
       <nav className="hidden lg:flex flex-col h-screen fixed left-0 top-0 py-lg z-40 bg-surface-container dark:bg-surface-container border-r border-outline-variant/20 w-64">
         <div className="px-lg mb-xl">
           <h1 className="text-headline-sm font-headline-sm font-bold text-primary">TETRIS COMMAND</h1>
-          <div className="mt-lg flex items-center gap-md">
+          <button
+            onClick={openProfile}
+            className="mt-lg flex items-center gap-md w-full text-left hover:bg-surface-container-high transition-colors rounded-lg p-sm"
+            aria-label="Open profile panel"
+          >
             <div className="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
               <span className="material-symbols-outlined text-outline" style={{ fontVariationSettings: "'FILL' 1" }}>account_circle</span>
             </div>
@@ -645,7 +649,7 @@ function SettingsScreen() {
               <p className="text-headline-sm font-headline-sm">PILOT_01</p>
               <p className="text-body-sm font-body-sm text-on-surface-variant">Rank: Grandmaster</p>
             </div>
-          </div>
+          </button>
         </div>
         <div className="flex-1 px-sm space-y-sm">
           <button onClick={goToMenu} className="flex items-center gap-md text-on-surface-variant px-4 py-3 hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 rounded-lg text-body-sm font-body-sm w-full text-left">
@@ -737,6 +741,62 @@ function SettingsScreen() {
           <span className="text-label-caps font-label-caps mt-xs font-black">Menu</span>
         </button>
       </nav>
+
+      {/* Profile Drawer */}
+      {profileOpen && (
+        <div className="fixed inset-0 z-[70] bg-background/70 backdrop-blur-md flex items-center justify-center" data-testid="profile-drawer">
+          <div className="bg-surface-container rounded-xl border border-outline-variant/50 p-xl shadow-2xl flex flex-col items-center gap-md max-w-sm w-full mx-md relative">
+            <button
+              onClick={closeProfile}
+              className="absolute top-3 right-3 p-2 rounded-full hover:bg-surface-container-high transition-colors"
+              aria-label="Close profile"
+            >
+              <span className="material-symbols-outlined text-on-surface-variant">close</span>
+            </button>
+            <div className="w-20 h-20 rounded-full bg-surface-variant flex items-center justify-center border border-outline-variant/30">
+              <span className="material-symbols-outlined text-4xl text-outline" style={{ fontVariationSettings: "'FILL' 1" }}>account_circle</span>
+            </div>
+            <div className="text-center">
+              <h3 className="text-headline-md font-headline-md text-on-surface">PILOT_01</h3>
+              <p className="text-body-sm font-body-sm text-on-surface-variant">Rank: Grandmaster</p>
+              <p className="text-body-sm font-body-sm text-on-surface-variant mt-1">High Score: 999,999</p>
+            </div>
+            <button
+              onClick={closeProfile}
+              className="w-full bg-primary-container text-on-primary-container py-md rounded-lg text-headline-sm font-headline-sm flex items-center justify-center gap-sm hover:shadow-[0_0_15px_rgba(37,99,235,0.6)] transition-all duration-200"
+            >
+              <span className="material-symbols-outlined">arrow_back</span>
+              Back
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function StorageErrorBanner() {
+  const { gameState } = useAppContext();
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
+
+  useEffect(() => {
+    const err = getLastStorageError();
+    if (err) setErrorMsg(err);
+  }, [gameState.score]); // check periodically when score changes
+
+  if (!errorMsg) return null;
+
+  return (
+    <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[80] bg-error-container text-on-error-container px-md py-sm rounded-lg shadow-lg border border-error flex items-center gap-sm max-w-md w-[90%]">
+      <span className="material-symbols-outlined text-error">error</span>
+      <span className="text-body-sm font-body-sm flex-1">Storage error: {errorMsg}</span>
+      <button
+        onClick={() => { clearLastStorageError(); setErrorMsg(null); }}
+        className="p-1 rounded hover:bg-error/20 transition-colors"
+        aria-label="Dismiss storage error"
+      >
+        <span className="material-symbols-outlined text-sm">close</span>
+      </button>
     </div>
   );
 }
@@ -764,6 +824,7 @@ function AppShell() {
 export default function App() {
   return (
     <AppProvider>
+      <StorageErrorBanner />
       <AppShell />
     </AppProvider>
   );

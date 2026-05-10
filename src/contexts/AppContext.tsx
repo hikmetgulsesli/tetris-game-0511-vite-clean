@@ -5,6 +5,7 @@ import type { GameState } from '../types/domain';
 interface AppContextValue {
   gameState: GameState;
   screen: 'menu' | 'playing' | 'paused' | 'gameover' | 'settings' | 'help';
+  profileOpen: boolean;
   startGame: () => void;
   pauseGame: () => void;
   resumeGame: () => void;
@@ -13,6 +14,8 @@ interface AppContextValue {
   goToMenu: () => void;
   goToSettings: () => void;
   goToHelp: () => void;
+  openProfile: () => void;
+  closeProfile: () => void;
   movePiece: (dx: number, dy: number) => boolean;
   rotatePiece: (clockwise: boolean) => void;
   softDrop: () => void;

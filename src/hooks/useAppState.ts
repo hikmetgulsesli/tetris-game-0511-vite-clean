@@ -18,9 +18,10 @@ import {
   generateBag,
   TETROMINO_SHAPES,
 } from '../types/domain';
-import { loadHighScore, saveHighScore } from '../utils/storage';
+import { loadHighScore, saveHighScore, getLastStorageError, isStorageOk } from '../utils/storage';
 
 export function useAppState() {
+  // Pre-initialize the game so default screen 'playing' has a valid board + piece
   const [board, setBoard] = useState<Board>(createEmptyBoard);
   const [currentPiece, setCurrentPiece] = useState<Piece | null>(null);
   const [nextPieces, setNextPieces] = useState<TetrominoType[]>([]);
@@ -31,15 +32,26 @@ export function useAppState() {
   const [highScore, setHighScore] = useState(loadHighScore);
   const [isPaused, setIsPaused] = useState(false);
   const [isGameOver, setIsGameOver] = useState(false);
-  const [screen, setScreen] = useState<'menu' | 'playing' | 'paused' | 'gameover' | 'settings' | 'help'>('menu');
+  const [screen, setScreen] = useState<'menu' | 'playing' | 'paused' | 'gameover' | 'settings' | 'help'>('playing');
   const [canHold, setCanHold] = useState(true);
+  const [profileOpen, setProfileOpen] = useState(false);
 
   const bagRef = useRef<TetrominoType[]>([]);
+  const nextPiecesRef = useRef<TetrominoType[]>([]);
   const lastDropRef = useRef(0);
   const animFrameRef = useRef(0);
   const keysRef = useRef<Set<string>>(new Set());
   const lastMoveRef = useRef<Record<string, number>>({});
   const isPlayingRef = useRef(false);
+
+  // Keep nextPiecesRef in sync with state
+  useEffect(() => {
+    nextPiecesRef.current = nextPieces;
+  }, [nextPieces]);
+
+  // Refs for stable continuous-movement interval
+  const movePieceRef = useRef<(dx: number, dy: number) => boolean>(() => false);
+  const softDropRef = useRef<() => void>(() => {});
 
   const getNextTetromino = useCallback((): TetrominoType => {
     if (bagRef.current.length === 0) {
@@ -49,14 +61,28 @@ export function useAppState() {
   }, []);
 
   const spawnPiece = useCallback((type?: TetrominoType): Piece | null => {
-    const pieceType = type ?? getNextTetromino();
+    let pieceType: TetrominoType;
+    if (type) {
+      pieceType = type;
+    } else {
+      // Pull from nextPieces preview queue
+      const np = nextPiecesRef.current;
+      if (np.length > 0) {
+        pieceType = np[0];
+        const remaining = np.slice(1);
+        if (bagRef.current.length === 0) bagRef.current = generateBag();
+        const newNext = [...remaining, bagRef.current.pop()!];
+        setNextPieces(newNext);
+      } else {
+        pieceType = getNextTetromino();
+      }
+    }
     const piece: Piece = {
       type: pieceType,
       x: Math.floor(BOARD_WIDTH / 2) - 1,
       y: 0,
       rotation: 0,
     };
-    // Adjust for O and I pieces
     if (pieceType === 'O') piece.x -= 1;
     if (!isValidPosition(board, piece)) {
       return null;
@@ -189,6 +215,8 @@ export function useAppState() {
     bagRef.current = generateBag();
     const initialNext: TetrominoType[] = [getNextTetromino(), getNextTetromino(), getNextTetromino()];
     setNextPieces(initialNext);
+    // sync ref immediately so spawnPiece sees the new queue
+    nextPiecesRef.current = initialNext;
     const first = spawnPiece();
     if (first) {
       setBoard(newBoard);
@@ -251,6 +279,23 @@ export function useAppState() {
     setScreen('help');
   }, []);
 
+  const openProfile = useCallback(() => {
+    setProfileOpen(true);
+  }, []);
+
+  const closeProfile = useCallback(() => {
+    setProfileOpen(false);
+  }, []);
+
+  // Auto-start on mount when default screen is playing and no piece exists
+  const hasAutoStarted = useRef(false);
+  useEffect(() => {
+    if (!hasAutoStarted.current && screen === 'playing' && !currentPiece) {
+      hasAutoStarted.current = true;
+      startGame();
+    }
+  }, [screen, currentPiece, startGame]);
+
   // Game loop
   useEffect(() => {
     const loop = (timestamp: number) => {
@@ -305,42 +350,59 @@ export function useAppState() {
     };
   }, [screen, isPaused, isGameOver, movePiece, softDrop, rotatePiece, hardDrop, holdCurrentPiece, togglePause]);
 
+  // Update callback refs so continuous movement interval stays stable
+  useEffect(() => {
+    movePieceRef.current = movePiece;
+    softDropRef.current = softDrop;
+  }, [movePiece, softDrop]);
+
   // Continuous movement for held keys (DAS/ARR simplified)
   useEffect(() => {
     if (screen !== 'playing' || isPaused || isGameOver) return;
-    let interval: ReturnType<typeof setInterval>;
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       const now = Date.now();
       const das = 170;
       const arr = 50;
       if (keysRef.current.has('ArrowLeft')) {
         const last = lastMoveRef.current['ArrowLeft'] ?? 0;
         if (now - last >= (last === 0 ? das : arr)) {
-          movePiece(-1, 0);
+          movePieceRef.current(-1, 0);
           lastMoveRef.current['ArrowLeft'] = now;
         }
       }
       if (keysRef.current.has('ArrowRight')) {
         const last = lastMoveRef.current['ArrowRight'] ?? 0;
         if (now - last >= (last === 0 ? das : arr)) {
-          movePiece(1, 0);
+          movePieceRef.current(1, 0);
           lastMoveRef.current['ArrowRight'] = now;
         }
       }
       if (keysRef.current.has('ArrowDown')) {
         const last = lastMoveRef.current['ArrowDown'] ?? 0;
         if (now - last >= 50) {
-          softDrop();
+          softDropRef.current();
           lastMoveRef.current['ArrowDown'] = now;
         }
       }
     }, 16);
     return () => clearInterval(interval);
-  }, [screen, isPaused, isGameOver, movePiece, softDrop]);
+  }, [screen, isPaused, isGameOver]);
 
   const resetKeyTimers = useCallback(() => {
     lastMoveRef.current = {};
   }, []);
+
+  // Expose global app state bridge for smoke tests / debug
+  useEffect(() => {
+    (window as unknown as Record<string, unknown>).app = {
+      screen,
+      selectedItem: currentPiece?.type ?? null,
+      storageStatus: isStorageOk() ? 'ok' : 'error',
+      lastError: getLastStorageError(),
+      activePanel: isPaused ? 'pause' : screen,
+      itemCount: score,
+    };
+  }, [screen, currentPiece, isPaused, score]);
 
   const gameState: GameState = {
     board,
@@ -359,6 +421,7 @@ export function useAppState() {
   return {
     gameState,
     screen,
+    profileOpen,
     startGame,
     pauseGame,
     resumeGame,
@@ -367,6 +430,8 @@ export function useAppState() {
     goToMenu,
     goToSettings,
     goToHelp,
+    openProfile,
+    closeProfile,
     movePiece,
     rotatePiece,
     softDrop,
