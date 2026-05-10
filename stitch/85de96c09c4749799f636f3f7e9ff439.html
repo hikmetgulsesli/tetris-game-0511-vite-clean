@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tetris Command - Entry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#b9c7df",
+                        "surface-container-highest": "#32343d",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#360f00",
+                        "inverse-surface": "#e1e2ed",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-on-surface": "#2e3039",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-background": "#e1e2ed",
+                        "surface-container-low": "#191b23",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb596",
+                        "on-surface-variant": "#c3c6d7",
+                        "outline-variant": "#434655",
+                        "on-secondary": "#233144",
+                        "secondary-fixed": "#d5e3fc",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary": "#b4c5ff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-surface": "#e1e2ed",
+                        "on-primary": "#002a78",
+                        "on-tertiary": "#581e00",
+                        "secondary": "#b9c7df",
+                        "surface-container-high": "#282a32",
+                        "outline": "#8d90a0",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "surface-tint": "#b4c5ff",
+                        "surface-bright": "#373942",
+                        "surface-variant": "#32343d",
+                        "surface": "#11131b",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-container": "#1d1f27",
+                        "on-secondary-container": "#abb9d1",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-container": "#3c4a5e",
+                        "primary-container": "#2563eb",
+                        "background": "#11131b",
+                        "surface-container-lowest": "#0c0e16",
+                        "inverse-primary": "#0053db",
+                        "surface-dim": "#11131b",
+                        "tertiary-container": "#bc4800",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "48px",
+                        "grid-gutter": "20px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "panel-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "mono-stats": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "mono-stats": ["20px", { "lineHeight": "1", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .grid-bg {
+            background-image: linear-gradient(to right, #334155 1px, transparent 1px),
+                              linear-gradient(to bottom, #334155 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.1;
+        }
+        .glow-primary {
+            box-shadow: 0 0 15px theme('colors.primary-container');
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col items-center justify-center relative overflow-hidden font-body-md">
+<!-- Subdued Background Grid -->
+<div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+<!-- Main Content Container -->
+<main class="relative z-10 w-full max-w-md px-md md:px-0 flex flex-col items-center">
+<!-- Logo / Title Area -->
+<div class="mb-xl text-center">
+<h1 class="text-display-lg font-display-lg text-primary mb-sm tracking-tighter" style="text-shadow: 0 0 20px rgba(37, 99, 235, 0.4);">
+                TETRIS COMMAND
+            </h1>
+<p class="text-label-caps font-label-caps text-on-surface-variant uppercase tracking-widest">
+                System Initialized
+            </p>
+</div>
+<!-- High Score Card -->
+<div class="bg-surface-container border border-outline-variant rounded-lg p-md mb-xl w-full flex justify-between items-center bg-opacity-80 backdrop-blur-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">emoji_events</span>
+<span class="text-label-caps font-label-caps text-on-surface-variant">HIGH SCORE</span>
+</div>
+<div class="text-mono-stats font-mono-stats text-primary">
+                9,942,000
+            </div>
+</div>
+<!-- Navigation / Action Buttons Stack -->
+<nav class="w-full flex flex-col gap-sm">
+<!-- Resume Button (Prominent) -->
+<button class="w-full bg-surface-container border border-primary text-primary hover:bg-primary-container hover:text-white transition-all duration-200 rounded-lg py-md px-lg flex items-center justify-between group">
+<span class="text-headline-sm font-headline-sm">Resume Game</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">play_arrow</span>
+</button>
+<!-- Start New Game Button -->
+<button class="w-full bg-primary-container text-white glow-primary hover:bg-inverse-primary transition-all duration-200 rounded-lg py-md px-lg flex items-center justify-between mt-sm">
+<span class="text-headline-sm font-headline-sm">Start New</span>
+<span class="material-symbols-outlined">add</span>
+</button>
+<!-- Difficulty Selector -->
+<div class="w-full relative mt-sm">
+<select class="w-full appearance-none bg-surface-container border border-outline-variant text-on-surface hover:border-outline transition-colors duration-200 rounded-lg py-md px-lg text-headline-sm font-headline-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary cursor-pointer">
+<option selected="" value="normal">Difficulty: Normal</option>
+<option value="hard">Difficulty: Hard</option>
+<option value="grandmaster">Difficulty: Grandmaster</option>
+</select>
+<span class="material-symbols-outlined absolute right-lg top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">
+                    arrow_drop_down
+                </span>
+</div>
+<div class="grid grid-cols-2 gap-sm mt-sm">
+<!-- Settings Button -->
+<button class="w-full bg-surface-container border border-outline-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors duration-200 rounded-lg py-sm px-md flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-label-caps font-label-caps">Settings</span>
+</button>
+<!-- Help Button -->
+<button class="w-full bg-surface-container border border-outline-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-colors duration-200 rounded-lg py-sm px-md flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+<span class="text-label-caps font-label-caps">Help</span>
+</button>
+</div>
+</nav>
+<!-- Footer / Version -->
+<div class="mt-xl text-center">
+<span class="text-body-sm font-body-sm text-on-surface-variant opacity-50">v2.4.1.09</span>
+</div>
+</main>
+</body></html>

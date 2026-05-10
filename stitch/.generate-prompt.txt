@@ -1,0 +1,71 @@
+# Tetris Game Vite Clean PRD
+
+## Overview
+Tetris Game Vite Clean turns the user's request into a directly usable application. The first screen is not a landing page; it is the real workflow surface where the user can inspect data, take actions, and recover from empty or error states. User-facing copy language: English. Pipeline metadata, story titles, component identifiers, and technical reports remain English.
+
+## Goals
+- Provide a working first-load experience with populated, empty, loading, and error states.
+- Ensure every visible button and icon button triggers a real route, state change, panel, modal, or form behavior.
+- Avoid text overflow, incoherent overlap, dead controls, and broken back navigation on mobile and desktop.
+- Persist data through localStorage or the chosen data layer with visible error, retry, and reset behavior.
+- Expose deterministic state so smoke, final-test, and deploy gates can verify the application surface.
+
+## Technical Decisions
+- Framework: React 18 + Vite + TypeScript.
+- Styling: Tailwind CSS or plain CSS modules with a restrained product-tool visual system.
+- State: React state plus reducer/context; avoid an extra global-state library for small apps.
+- Storage: localStorage with visible retry and clear actions for persistence failures.
+- Icons: Lucide React; do not use emoji as controls.
+- Test surface: expose state, active screen, errors, counters, and active panel under window.app.
+
+## Functional Requirements
+- R1: Deliver a working product surface where the first screen is the actual application workflow.
+- Forms provide required-field validation and visible error messages.
+- Filtering, search, create, edit, delete, profile, settings, retry, and clear actions produce visible state changes in smoke tests.
+- Product controls must not use data-smoke-ignore; intentionally unavailable controls are disabled or aria-disabled.
+
+## Data Model
+- Entity fields are defined as TypeScript types that match the task domain.
+- Every persisted record includes id, createdAt, and updatedAt.
+- Global preferences such as settings and profile data are separated from domain entity state.
+- Storage schema is versioned; corrupt JSON shows a visible error state instead of silently resetting.
+
+## UI/UX Requirements
+- User-facing language: English.
+- Aesthetic: corporate/minimal, quiet, scannable, and appropriate for repeated product use.
+- Palette: Primary #2563EB, Secondary #475569, Background #F8FAFC, Surface #FFFFFF, Text #0F172A, Border #E2E8F0, Success #16A34A, Error #DC2626, Warning #D97706.
+- Typography: Inter or system sans; compact panels use small but readable headings.
+- Components: cards at 8px radius or less, clear focus rings, and 44x44px touch targets.
+- The profile/account icon must open a panel, drawer, or page with close/back behavior.
+
+## Non-Functional
+- Performance: target first load under 2s and client state transitions under 100ms.
+- Accessibility: WCAG 2.1 AA, keyboard navigation, aria-labels, focus states, and sufficient contrast.
+- Responsive: support 320px mobile widths through desktop with stacking, grid, or scrollable columns.
+- Error handling: storage and form errors are visible, retryable, and clearable.
+
+## Project Structure
+Use src/components, src/screens, src/hooks, src/utils, src/types, src/App.tsx, and src/main.tsx. Stitch HTML screens are translated into the App workflow after setup/build; no generated design screen should remain unused.
+
+## Window State
+window.app = { state, screen, lastError, storageStatus, itemCount, activePanel } exposes the main dogfood and test state.
+
+## Screens
+| # | Screen Name | Type | Description |
+|---|-----------|-----|----------|
+| 1 | Playfield | play | Playable main scene, score, and primary controls. |
+| 2 | Main Menu | menu | Start game, difficulty, settings, and resume actions. |
+| 3 | Results | result | Win/loss outcome, replay, and return-to-menu actions. |
+| 4 | Settings | settings | Audio, difficulty, and control preferences. |
+| 5 | Help | help | Short rules plus keyboard and touch explanations. |
+
+Generate a SEPARATE screen design for EVERY page, view, modal, dialog, tab panel, and settings screen described in this PRD. Do NOT skip ANY screen — even if it seems minor.
+
+MANDATORY SCREENS:
+- If the PRD mentions "settings" or "ayarlar" → generate a Settings screen
+- If the PRD mentions tabs or bottom navigation → generate EACH tab view as a separate screen
+- If the PRD mentions modals (statistics, help, share, confirmation) → generate each as a separate screen
+- If the PRD mentions error states, empty states, loading states → generate those too
+- Generate at least as many screens as there are distinct views/pages/modals in the PRD
+
+All visible application text must be in English. Keep screen metadata, generated source identifiers, and technical labels in English unless that text is visibly shown to users. Use a dark, modern theme.

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Tetris Command - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed-dim": "#b9c7df",
+                        "surface-container-highest": "#32343d",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#360f00",
+                        "inverse-surface": "#e1e2ed",
+                        "on-primary-fixed": "#00174b",
+                        "inverse-on-surface": "#2e3039",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary-fixed": "#0d1c2e",
+                        "on-background": "#e1e2ed",
+                        "surface-container-low": "#191b23",
+                        "on-error-container": "#ffdad6",
+                        "tertiary": "#ffb596",
+                        "on-surface-variant": "#c3c6d7",
+                        "outline-variant": "#434655",
+                        "on-secondary": "#233144",
+                        "secondary-fixed": "#d5e3fc",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "primary": "#b4c5ff",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-surface": "#e1e2ed",
+                        "on-primary": "#002a78",
+                        "on-tertiary": "#581e00",
+                        "secondary": "#b9c7df",
+                        "surface-container-high": "#282a32",
+                        "outline": "#8d90a0",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#dbe1ff",
+                        "on-primary-container": "#eeefff",
+                        "surface-tint": "#b4c5ff",
+                        "surface-bright": "#373942",
+                        "surface-variant": "#32343d",
+                        "surface": "#11131b",
+                        "on-secondary-fixed-variant": "#3a485b",
+                        "surface-container": "#1d1f27",
+                        "on-secondary-container": "#abb9d1",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "secondary-container": "#3c4a5e",
+                        "primary-container": "#2563eb",
+                        "background": "#11131b",
+                        "surface-container-lowest": "#0c0e16",
+                        "inverse-primary": "#0053db",
+                        "surface-dim": "#11131b",
+                        "tertiary-container": "#bc4800",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "xl": "48px",
+                        "grid-gutter": "20px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "panel-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "mono-stats": ["JetBrains Mono"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "headline-md": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "mono-stats": ["20px", { "lineHeight": "1", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid #334155;
+        }
+        .glow-active {
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col h-screen fixed left-0 top-0 py-lg z-40 bg-surface-container dark:bg-surface-container border-r border-outline-variant/20 w-64">
+<div class="px-lg mb-xl">
+<h1 class="text-headline-sm font-headline-sm font-bold text-primary">TETRIS COMMAND</h1>
+<div class="mt-lg flex items-center gap-md">
+<div class="w-12 h-12 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden border border-outline-variant/30">
+<span class="material-symbols-outlined text-outline" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+<div>
+<p class="text-headline-sm font-headline-sm">PILOT_01</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Rank: Grandmaster</p>
+</div>
+</div>
+</div>
+<div class="flex-1 px-sm space-y-sm">
+<a class="flex items-center gap-md text-on-surface-variant px-4 py-3 hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 rounded-lg text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-4 py-3 hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 rounded-lg text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+                Leaderboards
+            </a>
+<a class="flex items-center gap-md text-on-surface-variant px-4 py-3 hover:bg-surface-container-high hover:text-on-surface transition-all duration-200 rounded-lg text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+                Achievements
+            </a>
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-4 py-3 translate-x-1 duration-200 text-body-sm font-body-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-lg mt-auto">
+<button class="w-full bg-primary-container text-on-primary-container py-3 rounded-lg font-headline-sm text-headline-sm hover:bg-primary-container/90 transition-colors glow-active">NEW GAME</button>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 p-md lg:p-xl flex flex-col items-center">
+<div class="w-full max-w-4xl space-y-lg">
+<header class="mb-xl">
+<h2 class="text-display-lg font-display-lg text-on-surface">Configuration</h2>
+<p class="text-body-md font-body-md text-on-surface-variant mt-sm">System parameters and pilot preferences.</p>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Audio Settings Card -->
+<div class="glass-panel rounded-xl p-panel-padding space-y-lg">
+<div class="flex items-center gap-md border-b border-outline-variant/30 pb-sm">
+<span class="material-symbols-outlined text-primary">volume_up</span>
+<h3 class="text-headline-md font-headline-md">Audio</h3>
+</div>
+<div class="space-y-md">
+<div class="flex justify-between items-center">
+<label class="text-body-md font-body-md">Master Volume</label>
+<input class="w-1/2 accent-primary h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer" max="100" min="0" type="range" value="80"/>
+</div>
+<div class="flex justify-between items-center">
+<label class="text-body-md font-body-md">SFX Volume</label>
+<input class="w-1/2 accent-primary h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer" max="100" min="0" type="range" value="100"/>
+</div>
+<div class="flex justify-between items-center pt-sm border-t border-outline-variant/20">
+<div>
+<p class="text-body-md font-body-md">Music</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Background telemetry tracks</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Difficulty Settings Card -->
+<div class="glass-panel rounded-xl p-panel-padding space-y-lg">
+<div class="flex items-center gap-md border-b border-outline-variant/30 pb-sm">
+<span class="material-symbols-outlined text-primary">speed</span>
+<h3 class="text-headline-md font-headline-md">Difficulty</h3>
+</div>
+<div class="space-y-md">
+<p class="text-body-sm font-body-sm text-on-surface-variant">Select gravity multiplier and drop speed.</p>
+<div class="grid grid-cols-1 gap-sm">
+<label class="flex items-center p-sm border border-outline-variant/30 rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 text-primary bg-surface-variant border-outline-variant focus:ring-primary focus:ring-2" name="difficulty" type="radio"/>
+<span class="ml-md text-body-md font-body-md">Beginner</span>
+</label>
+<label class="flex items-center p-sm border border-primary/50 bg-primary/10 rounded-lg cursor-pointer glow-active">
+<input checked="" class="w-4 h-4 text-primary bg-surface-variant border-outline-variant focus:ring-primary focus:ring-2" name="difficulty" type="radio"/>
+<span class="ml-md text-body-md font-body-md text-primary font-bold">Pro</span>
+</label>
+<label class="flex items-center p-sm border border-outline-variant/30 rounded-lg cursor-pointer hover:bg-surface-container transition-colors">
+<input class="w-4 h-4 text-primary bg-surface-variant border-outline-variant focus:ring-primary focus:ring-2" name="difficulty" type="radio"/>
+<span class="ml-md text-body-md font-body-md">Grandmaster</span>
+</label>
+</div>
+</div>
+</div>
+<!-- Controls Settings Card -->
+<div class="glass-panel rounded-xl p-panel-padding space-y-lg md:col-span-2">
+<div class="flex items-center gap-md border-b border-outline-variant/30 pb-sm">
+<span class="material-symbols-outlined text-primary">keyboard</span>
+<h3 class="text-headline-md font-headline-md">Control Preferences</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-md">
+<h4 class="text-label-caps font-label-caps text-on-surface-variant tracking-wider uppercase">Key Bindings</h4>
+<div class="space-y-sm">
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded border border-outline-variant/20">
+<span class="text-body-md font-body-md">Move Left</span>
+<button class="px-md py-xs bg-surface-variant rounded text-mono-stats font-mono-stats border border-outline-variant/50 hover:bg-surface-container-high transition-colors">Left Arrow</button>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded border border-outline-variant/20">
+<span class="text-body-md font-body-md">Move Right</span>
+<button class="px-md py-xs bg-surface-variant rounded text-mono-stats font-mono-stats border border-outline-variant/50 hover:bg-surface-container-high transition-colors">Right Arrow</button>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded border border-outline-variant/20">
+<span class="text-body-md font-body-md">Rotate CW</span>
+<button class="px-md py-xs bg-surface-variant rounded text-mono-stats font-mono-stats border border-outline-variant/50 hover:bg-surface-container-high transition-colors">Up Arrow</button>
+</div>
+<div class="flex justify-between items-center bg-surface-container-low p-sm rounded border border-outline-variant/20">
+<span class="text-body-md font-body-md">Hard Drop</span>
+<button class="px-md py-xs bg-surface-variant rounded text-mono-stats font-mono-stats border border-outline-variant/50 hover:bg-surface-container-high transition-colors">Space</button>
+</div>
+</div>
+</div>
+<div class="space-y-md">
+<h4 class="text-label-caps font-label-caps text-on-surface-variant tracking-wider uppercase">Gameplay Assists</h4>
+<div class="flex justify-between items-center pt-xs">
+<div>
+<p class="text-body-md font-body-md">Ghost Piece</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Show landing position preview</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+<div class="flex justify-between items-center pt-md border-t border-outline-variant/20">
+<div>
+<p class="text-body-md font-body-md">Hold Queue</p>
+<p class="text-body-sm font-body-sm text-on-surface-variant">Enable piece holding</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+</label>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end gap-md pt-lg">
+<button class="px-lg py-md border border-outline-variant/50 text-on-surface rounded-lg font-headline-sm text-headline-sm hover:bg-surface-container-high transition-colors">Reset Defaults</button>
+<button class="px-lg py-md bg-primary-container text-on-primary-container rounded-lg font-headline-sm text-headline-sm hover:bg-primary-container/90 transition-colors glow-active">Save Changes</button>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-20 px-md pb-safe border-t border-outline-variant/30 bg-surface/90 backdrop-blur-xl shadow-xl rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary-fixed-dim" href="#">
+<span class="material-symbols-outlined">sports_esports</span>
+<span class="text-label-caps font-label-caps mt-xs">Play</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary-fixed-dim" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="text-label-caps font-label-caps mt-xs">Leader</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-secondary-fixed-dim" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="text-label-caps font-label-caps mt-xs">Help</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">menu</span>
+<span class="text-label-caps font-label-caps mt-xs font-black">Menu</span>
+</a>
+</nav>
+</body></html>
